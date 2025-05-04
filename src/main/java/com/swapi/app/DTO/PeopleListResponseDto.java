@@ -1,4 +1,4 @@
-package com.example.demo.DTO;
+package com.swapi.app.DTO;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;

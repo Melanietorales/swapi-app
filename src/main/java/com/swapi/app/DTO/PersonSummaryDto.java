@@ -1,4 +1,4 @@
-package com.example.demo.DTO;
+package com.swapi.app.DTO;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.v3.oas.annotations.media.Schema;

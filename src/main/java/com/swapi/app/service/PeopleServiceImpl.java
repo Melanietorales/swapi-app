@@ -1,9 +1,9 @@
-package com.example.demo.service;
+package com.swapi.app.service;
 
-import com.example.demo.DTO.PeopleListResponseDto;
-import com.example.demo.client.PeopleClient;
-import com.example.demo.mapper.PeopleListResponseToDto;
-import com.example.demo.model.PeopleListResponse;
+import com.swapi.app.DTO.PeopleListResponseDto;
+import com.swapi.app.client.PeopleClient;
+import com.swapi.app.mapper.PeopleListResponseToDto;
+import com.swapi.app.model.PeopleListResponse;
 
 public class PeopleServiceImpl implements PeopleService {
 

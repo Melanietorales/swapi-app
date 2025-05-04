@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.swapi.app.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;

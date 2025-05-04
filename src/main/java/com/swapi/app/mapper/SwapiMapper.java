@@ -1,6 +1,6 @@
-package com.example.demo.mapper;
+package com.swapi.app.mapper;
 
-import com.example.demo.model.*;
+import com.swapi.app.model.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Component;
 

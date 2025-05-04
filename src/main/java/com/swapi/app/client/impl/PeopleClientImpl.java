@@ -1,8 +1,8 @@
-package com.example.demo.client.impl;
+package com.swapi.app.client.impl;
 
-import com.example.demo.client.PeopleClient;
-import com.example.demo.mapper.SwapiMapper;
-import com.example.demo.model.*;
+import com.swapi.app.client.PeopleClient;
+import com.swapi.app.mapper.SwapiMapper;
+import com.swapi.app.model.PeopleListResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,6 +1,6 @@
-package com.example.demo.service;
+package com.swapi.app.service;
 
-import com.example.demo.DTO.PeopleListResponseDto;
+import com.swapi.app.DTO.PeopleListResponseDto;
 
 public interface PeopleService {
     PeopleListResponseDto getPeopleData(int page, int limit, String name);
