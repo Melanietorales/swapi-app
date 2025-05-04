@@ -1,9 +1,9 @@
 package com.swapi.app.service;
 
 import com.swapi.app.DTO.PeopleListResponseDto;
-import com.swapi.app.DTO.SwapiIdSearchResponseDto;
+import com.swapi.app.DTO.PersonSummaryDto;
 
 public interface PeopleService {
     PeopleListResponseDto getPeopleData(int page, int limit, String name);
-    SwapiIdSearchResponseDto getPersonById(int id);
+    PersonSummaryDto getPersonById(int id);
 }

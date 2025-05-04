@@ -4,12 +4,10 @@ import com.swapi.app.DTO.PeopleListResponseDto;
 import com.swapi.app.DTO.PersonSummaryDto;
 import com.swapi.app.model.PeopleListResponse;
 import com.swapi.app.model.PersonSummary;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Component
 public class PeopleListResponseToDto {
 
     public static PeopleListResponseDto toDto(PeopleListResponse response) {

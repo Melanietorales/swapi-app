@@ -1,10 +1,10 @@
 package com.swapi.app.service;
 
 import com.swapi.app.DTO.PeopleListResponseDto;
-import com.swapi.app.DTO.SwapiIdSearchResponseDto;
+import com.swapi.app.DTO.PersonSummaryDto;
 import com.swapi.app.client.PeopleClient;
 import com.swapi.app.mapper.PeopleListResponseToDto;
-import com.swapi.app.mapper.SwapiIdSearcheResponseToDto;
+import com.swapi.app.mapper.SwapiIdSearchResponseToDto;
 import com.swapi.app.model.PeopleListResponse;
 import com.swapi.app.model.SwapiIdSearchResponse;
 
@@ -23,8 +23,8 @@ public class PeopleServiceImpl implements PeopleService {
     }
 
     @Override
-    public SwapiIdSearchResponseDto getPersonById (int id) {
+    public PersonSummaryDto getPersonById (int id) {
         SwapiIdSearchResponse response = peopleClient.getPersonById(id);
-        return SwapiIdSearcheResponseToDto.toDto(response);
+        return SwapiIdSearchResponseToDto.toDto(response);
     }
 }

@@ -1,7 +1,7 @@
 package com.swapi.app.controller;
 
 import com.swapi.app.DTO.PeopleListResponseDto;
-import com.swapi.app.DTO.SwapiIdSearchResponseDto;
+import com.swapi.app.DTO.PersonSummaryDto;
 import com.swapi.app.service.PeopleService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +27,7 @@ public class PeopleController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<SwapiIdSearchResponseDto> getPersonById(
+    public ResponseEntity<PersonSummaryDto> getPersonById(
             @PathVariable int id
     ) {
         return ResponseEntity.ok(peopleService.getPersonById(id));

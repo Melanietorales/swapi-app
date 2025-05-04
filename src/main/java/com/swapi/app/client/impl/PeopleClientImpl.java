@@ -65,7 +65,7 @@ public class PeopleClientImpl implements PeopleClient {
     /**
      * Obtiene los datos de las personas, incluyendo filtrado por nombre y paginación.
      *
-     * @PathVariable id Filtro por id para la persona a recuperar
+     * @param id Filtro por id para la persona a recuperar
      * @return Datos de la persona
      */
 
