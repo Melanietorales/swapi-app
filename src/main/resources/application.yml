@@ -1,0 +1,5 @@
+server:
+  port: 8080
+
+swapi:
+  url: https://www.swapi.tech/api
