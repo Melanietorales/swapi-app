@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class SwapiSearchResult {
-    private SwapiPersonDetailed properties;
+    private PersonSummary properties;
 }

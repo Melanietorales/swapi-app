@@ -33,7 +33,7 @@ public class SwapiMapper {
                 } else {
                     SwapiPeopleResponse pagedResponse = mapper.readValue(json, SwapiPeopleResponse.class);
 
-                    for (SwapiPersonDetailed person : pagedResponse.getResults()) {
+                    for (PersonSummary person : pagedResponse.getResults()) {
                         PersonSummary summary = PersonSummary.builder()
                                 .uid(person.getUid())
                                 .name(person.getName())
@@ -56,7 +56,7 @@ public class SwapiMapper {
         }
 
     private static PersonSummary getPersonSummary(SwapiSearchResult person) {
-        SwapiPersonDetailed props = person.getProperties();
+        PersonSummary props = person.getProperties();
 
         return PersonSummary.builder()
                 .uid(props.getUid())

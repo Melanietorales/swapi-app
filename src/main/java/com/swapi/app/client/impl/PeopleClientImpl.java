@@ -3,6 +3,7 @@ package com.swapi.app.client.impl;
 import com.swapi.app.client.PeopleClient;
 import com.swapi.app.mapper.SwapiMapper;
 import com.swapi.app.model.PeopleListResponse;
+import com.swapi.app.model.SwapiIdSearchResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -61,5 +62,24 @@ public class PeopleClientImpl implements PeopleClient {
         return swapiMapper.mapResponse(rawResponse, isSearch, page);
     }
 
+    /**
+     * Obtiene los datos de las personas, incluyendo filtrado por nombre y paginación.
+     *
+     * @PathVariable id Filtro por id para la persona a recuperar
+     * @return Datos de la persona
+     */
+
+    @Override
+    public SwapiIdSearchResponse getPersonById(int id) {
+        logger.info("getPeopleData - Trying to get people data from swapi with id: {}", id);
+        String url = baseUrl + "/people/" + id;
+
+        return restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                null,
+                SwapiIdSearchResponse.class
+        ).getBody();
+    }
 
 }

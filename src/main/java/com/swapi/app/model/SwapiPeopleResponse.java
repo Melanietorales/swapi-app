@@ -11,5 +11,5 @@ public class SwapiPeopleResponse {
     private int totalRecords;
     @JsonProperty("total_pages")
     private int totalPages;
-    private List<SwapiPersonDetailed> results;
+    private List<PersonSummary> results;
 }
