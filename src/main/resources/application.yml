@@ -3,3 +3,10 @@ server:
 
 swapi:
   url: https://www.swapi.tech/api
+
+jwt:
+  secret: MelanieSecretKey
+
+mock:
+  username: admin
+  password: password
