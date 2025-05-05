@@ -77,5 +77,73 @@ public class SwapiMapper {
         );
     }
 
+    public StarshipListResponse mapStarshipResponse(String json, boolean isSearch, int page) {
+        try {
+            if (isSearch) {
+                return mapStarshipSearchResponse(json, page);
+            } else {
+                return mapStarshipPagedResponse(json, page);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to map Starship response from SWAPI", e);
+        }
+    }
+
+        private StarshipListResponse mapStarshipSearchResponse (String json,int page) throws IOException {
+            SwapiStarshipSearchResponse searchResponse = mapper.readValue(json, SwapiStarshipSearchResponse.class);
+            List<SwapiStarshipResults> results = new ArrayList<>();
+
+            for (StarshipSearchResult result : searchResponse.getResult()) {
+                SwapiStarshipResults props = result.getProperties();
+
+                SwapiStarshipResults summary = SwapiStarshipResults.builder()
+                        .uid(props.getUid())
+                        .name(props.getName())
+                        .model(props.getModel())
+                        .created(props.getCreated())
+                        .edited(props.getEdited())
+                        .consumables(props.getConsumables())
+                        .cargoCapacity(props.getCargoCapacity())
+                        .passengers(props.getPassengers())
+                        .maxAtmospheringSpeed(props.getMaxAtmospheringSpeed())
+                        .crew(props.getCrew())
+                        .length(props.getLength())
+                        .model(props.getModel())
+                        .costInCredits(props.getCostInCredits())
+                        .manufacturer(props.getManufacturer())
+                        .pilots(props.getPilots())
+                        .MGLT(props.getMGLT())
+                        .starshipClass(props.getStarshipClass())
+                        .hyperdriveRating(props.getHyperdriveRating())
+                        .films(props.getFilms())
+                        .url(props.getUrl())
+                        .build();
+
+                results.add(summary);
+            }
+
+            return new StarshipListResponse(null, null, null, null, results);
+        }
+
+        private StarshipListResponse mapStarshipPagedResponse (String json,int page) throws IOException {
+            StarshipListResponse pagedResponse = mapper.readValue(json, StarshipListResponse.class);
+            List<SwapiStarshipResults> results = new ArrayList<>();
+
+            for (SwapiStarshipResults result : pagedResponse.getResults()) {
+                results.add(SwapiStarshipResults.builder()
+                        .uid(result.getUid())
+                        .name(result.getName())
+                        .url(result.getUrl())
+                        .build());
+            }
+
+            return new StarshipListResponse(
+                    pagedResponse.getTotalRecords(),
+                    pagedResponse.getTotalPages(),
+                    pagedResponse.getPrevious(),
+                    pagedResponse.getNext(),
+                    results
+            );
+        }
 }
 
