@@ -2,25 +2,25 @@ package com.swapi.app.mapper;
 
 import com.swapi.app.dto.SwapiStarshipByIdResponseDto;
 import com.swapi.app.dto.SwapiStarshipPropertiesDto;
-import com.swapi.app.model.StarshipSearchResult;
-import com.swapi.app.model.SwapiStarshipByIdResponse;
-import com.swapi.app.model.SwapiStarshipProperties;
+import com.swapi.app.model.response.StarshipSearchResult;
+import com.swapi.app.model.response.StarshipByIdResponse;
+import com.swapi.app.model.response.StarshipProperties;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class SwapiStarshipByIdResponseToDtoTest {
+class StarshipByIdResponseToDtoTest {
 
     @Test
     void testToDto() {
-        SwapiStarshipProperties properties = getSwapiStarshipProperties();
+        StarshipProperties properties = getSwapiStarshipProperties();
 
         StarshipSearchResult  result = new StarshipSearchResult();
         result.setProperties(properties);
 
-        SwapiStarshipByIdResponse response = new SwapiStarshipByIdResponse();
+        StarshipByIdResponse response = new StarshipByIdResponse();
         response.setResult(result);
 
         SwapiStarshipByIdResponseDto dto = SwapiStarshipByIdResponseToDto.toDto(response);
@@ -35,8 +35,8 @@ class SwapiStarshipByIdResponseToDtoTest {
         assertEquals(Collections.singletonList("A New Hope"), dtoProps.getFilms());
     }
 
-    private static SwapiStarshipProperties getSwapiStarshipProperties() {
-        SwapiStarshipProperties properties = new SwapiStarshipProperties();
+    private static StarshipProperties getSwapiStarshipProperties() {
+        StarshipProperties properties = new StarshipProperties();
         properties.setUid("10");
         properties.setName("Millennium Falcon");
         properties.setUrl("https://swapi.dev/api/starships/10/");

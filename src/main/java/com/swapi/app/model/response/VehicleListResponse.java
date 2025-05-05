@@ -1,4 +1,4 @@
-package com.swapi.app.model;
+package com.swapi.app.model.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

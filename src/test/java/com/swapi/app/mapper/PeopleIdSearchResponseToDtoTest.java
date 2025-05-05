@@ -1,14 +1,14 @@
 package com.swapi.app.mapper;
 
 import com.swapi.app.dto.PersonSummaryDto;
-import com.swapi.app.model.PersonSummary;
-import com.swapi.app.model.SwapiIdSearchResponse;
-import com.swapi.app.model.SwapiSearchResult;
+import com.swapi.app.model.response.PersonSummary;
+import com.swapi.app.model.response.PeopleIdSearchResponse;
+import com.swapi.app.model.response.PeopleSearchResult;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class SwapiIdSearchResponseToDtoTest {
+class PeopleIdSearchResponseToDtoTest {
 
     @Test
     public void testToDto() {
@@ -18,10 +18,10 @@ class SwapiIdSearchResponseToDtoTest {
                     "fair", "blond", "blue", "55", "77", "Tatooine",
                     "2014-12-0900Z", "2014-12-20T000Z", "19BBY");
 
-            SwapiSearchResult searchResult = new SwapiSearchResult();
+            PeopleSearchResult searchResult = new PeopleSearchResult();
             searchResult.setProperties(personSummary);
 
-            SwapiIdSearchResponse response = new SwapiIdSearchResponse();
+            PeopleIdSearchResponse response = new PeopleIdSearchResponse();
             response.setResult(searchResult);
 
             PersonSummaryDto personSummaryDto = SwapiIdSearchResponseToDto.toDto(response);

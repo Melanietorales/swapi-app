@@ -4,6 +4,8 @@ import com.swapi.app.dto.StarshipListResponseDto;
 import com.swapi.app.dto.SwapiStarshipByIdResponseDto;
 import com.swapi.app.service.StarshipService;
 import io.swagger.v3.oas.annotations.Operation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/starship")
 public class StarshipController {
 
+    private static final Logger logger = LoggerFactory.getLogger(StarshipController.class);
     private final StarshipService starshipService;
 
     public StarshipController(StarshipService starshipService) {
@@ -25,6 +28,7 @@ public class StarshipController {
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String model
     ) {
+        logger.info("StarshipController - getStarshipData - page: {}, limit: {}, name: {}, model: {}", page, limit, name, model);
         return ResponseEntity.ok(starshipService.getStarshipData(page, limit, name, model));
     }
 
@@ -33,6 +37,7 @@ public class StarshipController {
     public ResponseEntity<SwapiStarshipByIdResponseDto> getStarshipById(
             @PathVariable int id
     ) {
+        logger.info("StarshipController - getStarshipById - id: {}", id);
         return ResponseEntity.ok(starshipService.getStarshipById(id));
     }
 }

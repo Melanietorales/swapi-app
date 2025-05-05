@@ -3,13 +3,13 @@ package com.swapi.app.mapper;
 import com.swapi.app.dto.StarshipSearchResultDto;
 import com.swapi.app.dto.SwapiStarshipByIdResponseDto;
 import com.swapi.app.dto.SwapiStarshipPropertiesDto;
-import com.swapi.app.model.SwapiStarshipByIdResponse;
-import com.swapi.app.model.SwapiStarshipProperties;
+import com.swapi.app.model.response.StarshipByIdResponse;
+import com.swapi.app.model.response.StarshipProperties;
 
 public class SwapiStarshipByIdResponseToDto {
 
-    public static SwapiStarshipByIdResponseDto toDto(SwapiStarshipByIdResponse response) {
-        SwapiStarshipProperties properties = response.getResult().getProperties();
+    public static SwapiStarshipByIdResponseDto toDto(StarshipByIdResponse response) {
+        StarshipProperties properties = response.getResult().getProperties();
         SwapiStarshipPropertiesDto propertiesDto = new SwapiStarshipPropertiesDto();
         propertiesDto.setUid(properties.getUid());
         propertiesDto.setName(properties.getName());

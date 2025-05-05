@@ -2,8 +2,8 @@ package com.swapi.app.mapper;
 
 import com.swapi.app.dto.StarshipListResponseDto;
 import com.swapi.app.dto.SwapiStarshipPropertiesDto;
-import com.swapi.app.model.StarshipListResponse;
-import com.swapi.app.model.SwapiStarshipProperties;
+import com.swapi.app.model.response.StarshipListResponse;
+import com.swapi.app.model.response.StarshipProperties;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,27 +24,27 @@ public class StarshipListResponseToDto {
                 .build();
     }
 
-    private static SwapiStarshipPropertiesDto mapStarshipResultsToDto(SwapiStarshipProperties swapiStarshipProperties) {
+    private static SwapiStarshipPropertiesDto mapStarshipResultsToDto(StarshipProperties starshipProperties) {
         return SwapiStarshipPropertiesDto.builder()
-                .uid(swapiStarshipProperties.getUid())
-                .name(swapiStarshipProperties.getName())
-                .url(swapiStarshipProperties.getUrl())
-                .created(swapiStarshipProperties.getCreated())
-                .edited(swapiStarshipProperties.getEdited())
-                .consumables(swapiStarshipProperties.getConsumables())
-                .cargoCapacity(swapiStarshipProperties.getCargoCapacity())
-                .passengers(swapiStarshipProperties.getPassengers())
-                .maxAtmospheringSpeed(swapiStarshipProperties.getMaxAtmospheringSpeed())
-                .crew(swapiStarshipProperties.getCrew())
-                .length(swapiStarshipProperties.getLength())
-                .model(swapiStarshipProperties.getModel())
-                .costInCredits(swapiStarshipProperties.getCostInCredits())
-                .manufacturer(swapiStarshipProperties.getManufacturer())
-                .pilots(swapiStarshipProperties.getPilots())
-                .MGLT(swapiStarshipProperties.getMglt())
-                .starshipClass(swapiStarshipProperties.getStarshipClass())
-                .hyperdriveRating(swapiStarshipProperties.getHyperdriveRating())
-                .films(swapiStarshipProperties.getFilms())
+                .uid(starshipProperties.getUid())
+                .name(starshipProperties.getName())
+                .url(starshipProperties.getUrl())
+                .created(starshipProperties.getCreated())
+                .edited(starshipProperties.getEdited())
+                .consumables(starshipProperties.getConsumables())
+                .cargoCapacity(starshipProperties.getCargoCapacity())
+                .passengers(starshipProperties.getPassengers())
+                .maxAtmospheringSpeed(starshipProperties.getMaxAtmospheringSpeed())
+                .crew(starshipProperties.getCrew())
+                .length(starshipProperties.getLength())
+                .model(starshipProperties.getModel())
+                .costInCredits(starshipProperties.getCostInCredits())
+                .manufacturer(starshipProperties.getManufacturer())
+                .pilots(starshipProperties.getPilots())
+                .MGLT(starshipProperties.getMglt())
+                .starshipClass(starshipProperties.getStarshipClass())
+                .hyperdriveRating(starshipProperties.getHyperdriveRating())
+                .films(starshipProperties.getFilms())
                 .build();
     }
 }

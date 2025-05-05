@@ -3,12 +3,12 @@ package com.swapi.app.mapper;
 import com.swapi.app.dto.FilmPropertiesDto;
 import com.swapi.app.dto.SwapiFilmByIdResponseDto;
 import com.swapi.app.dto.SwapiFilmListResultsDto;
-import com.swapi.app.model.FilmProperties;
-import com.swapi.app.model.SwapiFilmByIdResponse;
+import com.swapi.app.model.response.FilmProperties;
+import com.swapi.app.model.response.FilmByIdResponse;
 
 public class SwapiFilmByIdResponseToDto {
 
-    public static SwapiFilmByIdResponseDto toDto(SwapiFilmByIdResponse response) {
+    public static SwapiFilmByIdResponseDto toDto(FilmByIdResponse response) {
         FilmProperties properties = response.getResult().getProperties();
         FilmPropertiesDto propertiesDto = new FilmPropertiesDto();
         propertiesDto.setCreated(properties.getCreated());

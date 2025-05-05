@@ -1,4 +1,4 @@
-package com.swapi.app.model;
+package com.swapi.app.model.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -8,19 +8,18 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@Builder
 @Data
-@AllArgsConstructor
+@Builder
 @NoArgsConstructor
-public class SwapiStarshipProperties {
+@AllArgsConstructor
+public class VehicleListProperties {
     private String uid;
-    private String name;
-    private String url;
     private String created;
     private String edited;
     private String consumables;
+    private String name;
     @JsonProperty(value = "cargo_capacity")
-    private  String cargoCapacity;
+    private String cargoCapacity;
     private String passengers;
     @JsonProperty(value = "max_atmosphering_speed")
     private String maxAtmospheringSpeed;
@@ -30,13 +29,9 @@ public class SwapiStarshipProperties {
     @JsonProperty(value = "cost_in_credits")
     private String costInCredits;
     private String manufacturer;
+    @JsonProperty(value = "vehicle_class")
+    private String vehicleClass;
     private List<String> pilots;
-    @JsonProperty(value = "MGLT")
-    private String mglt;
-    @JsonProperty(value = "starship_class")
-    private String starshipClass;
-    @JsonProperty(value = "hyperdrive_rating")
-    private String hyperdriveRating;
     private List<String> films;
-
+    private String url;
 }

@@ -5,8 +5,8 @@ import com.swapi.app.dto.VehicleByIdResponseDto;
 import com.swapi.app.dto.VehicleListResponseDto;
 import com.swapi.app.mapper.VehicleByIdResponsetoDto;
 import com.swapi.app.mapper.VehicleListResponseToDto;
-import com.swapi.app.model.VehicleByIdResponse;
-import com.swapi.app.model.VehicleListResponse;
+import com.swapi.app.model.response.VehicleByIdResponse;
+import com.swapi.app.model.response.VehicleListResponse;
 import com.swapi.app.service.VehicleService;
 import org.springframework.stereotype.Service;
 

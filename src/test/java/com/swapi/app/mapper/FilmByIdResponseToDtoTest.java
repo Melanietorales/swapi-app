@@ -1,9 +1,9 @@
 package com.swapi.app.mapper;
 
 import com.swapi.app.dto.SwapiFilmByIdResponseDto;
-import com.swapi.app.model.FilmProperties;
-import com.swapi.app.model.SwapiFilmByIdResponse;
-import com.swapi.app.model.SwapiFilmListResults;
+import com.swapi.app.model.response.FilmProperties;
+import com.swapi.app.model.response.FilmByIdResponse;
+import com.swapi.app.model.response.FilmListResults;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
@@ -11,12 +11,12 @@ import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class SwapiFilmByIdResponseToDtoTest {
+class FilmByIdResponseToDtoTest {
 
     @Test
     public void testToDto() {
 
-        SwapiFilmByIdResponse response = getSwapiFilmByIdResponse();
+        FilmByIdResponse response = getSwapiFilmByIdResponse();
 
         SwapiFilmByIdResponseDto dto = SwapiFilmByIdResponseToDto.toDto(response);
 
@@ -33,7 +33,7 @@ class SwapiFilmByIdResponseToDtoTest {
             assertThat(dto.getResult().getProperties().getPlanets()).contains("planet1");
         }
 
-    private static SwapiFilmByIdResponse getSwapiFilmByIdResponse() {
+    private static FilmByIdResponse getSwapiFilmByIdResponse() {
         FilmProperties properties = new FilmProperties(
                 "2022-01-01", "2022-01-01",
                 Collections.singletonList("starship1"),
@@ -45,8 +45,8 @@ class SwapiFilmByIdResponseToDtoTest {
                 Collections.singletonList("species1"), "url"
         );
 
-        SwapiFilmListResults swapiFilmListResults = new SwapiFilmListResults(properties);
+        FilmListResults filmListResults = new FilmListResults(properties);
 
-        return new SwapiFilmByIdResponse(swapiFilmListResults);
+        return new FilmByIdResponse(filmListResults);
     }
 }

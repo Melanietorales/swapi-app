@@ -1,8 +1,8 @@
 package com.swapi.app.mapper;
 
 import com.swapi.app.dto.StarshipListResponseDto;
-import com.swapi.app.model.StarshipListResponse;
-import com.swapi.app.model.SwapiStarshipProperties;
+import com.swapi.app.model.response.StarshipListResponse;
+import com.swapi.app.model.response.StarshipProperties;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
@@ -29,7 +29,7 @@ public class StarshipListResponseToDtoTest {
     }
 
     private static StarshipListResponse getStarshipListResponse() {
-        SwapiStarshipProperties starshipProperties = new SwapiStarshipProperties(
+        StarshipProperties starshipProperties = new StarshipProperties(
                 "1", "Falcon", "url", "2022-01-01", "2022-01-01", "1 year",
                 "100", "3", "500", "2", "20", "Model A", "10000",
                 "Manufacturer A", Collections.singletonList("pilot1"), "100", "Class A", "1.0", Collections.singletonList("film1")

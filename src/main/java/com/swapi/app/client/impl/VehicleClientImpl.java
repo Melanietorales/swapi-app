@@ -1,14 +1,17 @@
 package com.swapi.app.client.impl;
 
 import com.swapi.app.client.VehicleClient;
+import com.swapi.app.exception.GenericException;
+import com.swapi.app.exception.SwapiNotFoundException;
 import com.swapi.app.mapper.SwapiMapper;
-import com.swapi.app.model.VehicleByIdResponse;
-import com.swapi.app.model.VehicleListResponse;
+import com.swapi.app.model.response.VehicleByIdResponse;
+import com.swapi.app.model.response.VehicleListResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -45,25 +48,47 @@ public class VehicleClientImpl implements VehicleClient {
 
         String url = uriBuilder.toUriString();
 
-        String rawResponse = restTemplate.exchange(
-                url,
-                HttpMethod.GET,
-                null,
-                String.class
-        ).getBody();
+        try {
+            String rawResponse = restTemplate.exchange(
+                    url,
+                    HttpMethod.GET,
+                    null,
+                    String.class
+            ).getBody();
 
-        return swapiMapper.mapVehiclesResponse(rawResponse, isSearch);
+            VehicleListResponse response = swapiMapper.mapVehiclesResponse(rawResponse, isSearch);
+
+            if (isSearch && (response.getResults() == null || response.getResults().isEmpty())) {
+                logger.error("No vehicles found with the given filters.");
+                throw new SwapiNotFoundException("No vehicles found with the given filters.");
+            }
+            return response;
+
+        } catch (Exception e) {
+            logger.error("Error occurred while fetching vehicles: {}", e.getMessage());
+            throw new GenericException("An error occurred while fetching vehicles");
+        }
+
     }
 
     public VehicleByIdResponse getVehicleById(int id) {
         logger.info("getVehicleById - Trying to get vehicle data from swapi with id: {}", id);
         String url = baseUrl + "/vehicles/" + id;
 
-        return restTemplate.exchange(
-                url,
-                HttpMethod.GET,
-                null,
-                VehicleByIdResponse.class
-        ).getBody();
+        try {
+            return restTemplate.exchange(
+                    url,
+                    HttpMethod.GET,
+                    null,
+                    VehicleByIdResponse.class
+            ).getBody();
+        } catch (HttpClientErrorException.NotFound e) {
+            logger.error("Vehicle not found for id {}. Response body: {}", id, e.getResponseBodyAsString());
+            throw new SwapiNotFoundException("Vehicle not found for id " + id);
+
+        } catch (Exception e) {
+            logger.error("Error occurred while fetching vehicle by id {}, error: {}", id, e.getMessage());
+            throw new GenericException("An error occurred while fetching vehicle by id: " + id);
+        }
     }
 }

@@ -1,12 +1,12 @@
 package com.swapi.app.mapper;
 
 import com.swapi.app.dto.PersonSummaryDto;
-import com.swapi.app.model.PersonSummary;
-import com.swapi.app.model.SwapiIdSearchResponse;
+import com.swapi.app.model.response.PersonSummary;
+import com.swapi.app.model.response.PeopleIdSearchResponse;
 
 public class SwapiIdSearchResponseToDto {
 
-    public static PersonSummaryDto toDto(SwapiIdSearchResponse response) {
+    public static PersonSummaryDto toDto(PeopleIdSearchResponse response) {
         PersonSummary person = response.getResult().getProperties();
 
         return PersonSummaryDto.builder()

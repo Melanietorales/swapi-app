@@ -5,8 +5,8 @@ import com.swapi.app.dto.PersonSummaryDto;
 import com.swapi.app.client.PeopleClient;
 import com.swapi.app.mapper.PeopleListResponseToDto;
 import com.swapi.app.mapper.SwapiIdSearchResponseToDto;
-import com.swapi.app.model.PeopleListResponse;
-import com.swapi.app.model.SwapiIdSearchResponse;
+import com.swapi.app.model.response.PeopleListResponse;
+import com.swapi.app.model.response.PeopleIdSearchResponse;
 import com.swapi.app.service.PeopleService;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +27,7 @@ public class PeopleServiceImpl implements PeopleService {
 
     @Override
     public PersonSummaryDto getPersonById (int id) {
-        SwapiIdSearchResponse response = peopleClient.getPersonById(id);
+        PeopleIdSearchResponse response = peopleClient.getPersonById(id);
         return SwapiIdSearchResponseToDto.toDto(response);
     }
 }

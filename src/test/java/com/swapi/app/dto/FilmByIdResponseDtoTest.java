@@ -8,7 +8,7 @@ import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class SwapiFilmByIdResponseDtoTest {
+class FilmByIdResponseDtoTest {
 
     @Test
     public void testSwapiFilmByIdResponseDto() {

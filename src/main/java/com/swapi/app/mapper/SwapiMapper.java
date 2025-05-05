@@ -1,7 +1,7 @@
 package com.swapi.app.mapper;
 
-import com.swapi.app.model.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.swapi.app.model.response.*;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -32,10 +32,10 @@ public class SwapiMapper {
 
     // Maps a search-based response for people data.
     private PeopleListResponse mapPeopleSearchResponse(String json, int page) throws IOException {
-        SwapiNameSearchResponse singleResponse = mapper.readValue(json, SwapiNameSearchResponse.class);
+        PeopleNameSearchResponse singleResponse = mapper.readValue(json, PeopleNameSearchResponse.class);
         List<PersonSummary> results = new ArrayList<>();
 
-        for (SwapiSearchResult person : singleResponse.getResult()) {
+        for (PeopleSearchResult person : singleResponse.getResult()) {
             PersonSummary props = person.getProperties();
 
             PersonSummary summary = PersonSummary.builder()
@@ -61,7 +61,7 @@ public class SwapiMapper {
 
     // Maps a paginated response for people data.
     private PeopleListResponse mapPeoplePagedResponse (String json, int page) throws IOException {
-        SwapiPeopleResponse pagedResponse = mapper.readValue(json, SwapiPeopleResponse.class);
+        PeopleResponse pagedResponse = mapper.readValue(json, PeopleResponse.class);
         List<PersonSummary> results = new ArrayList<>();
 
         for (PersonSummary person : pagedResponse.getResults()) {
@@ -95,13 +95,13 @@ public class SwapiMapper {
 
     // Maps a search-based response for starships.
     private StarshipListResponse mapStarshipSearchResponse (String json) throws IOException {
-            SwapiStarshipSearchResponse searchResponse = mapper.readValue(json, SwapiStarshipSearchResponse.class);
-            List<SwapiStarshipProperties> results = new ArrayList<>();
+            StarshipSearchResponse searchResponse = mapper.readValue(json, StarshipSearchResponse.class);
+            List<StarshipProperties> results = new ArrayList<>();
 
             for (StarshipSearchResult result : searchResponse.getResult()) {
-                SwapiStarshipProperties props = result.getProperties();
+                StarshipProperties props = result.getProperties();
 
-                SwapiStarshipProperties summary = SwapiStarshipProperties.builder()
+                StarshipProperties summary = StarshipProperties.builder()
                         .uid(props.getUid())
                         .name(props.getName())
                         .model(props.getModel())
@@ -133,10 +133,10 @@ public class SwapiMapper {
     // Maps a paginated response for starships.
     private StarshipListResponse mapStarshipPagedResponse (String json) throws IOException {
             StarshipListResponse pagedResponse = mapper.readValue(json, StarshipListResponse.class);
-            List<SwapiStarshipProperties> results = new ArrayList<>();
+            List<StarshipProperties> results = new ArrayList<>();
 
-            for (SwapiStarshipProperties result : pagedResponse.getResults()) {
-                results.add(SwapiStarshipProperties.builder()
+            for (StarshipProperties result : pagedResponse.getResults()) {
+                results.add(StarshipProperties.builder()
                         .uid(result.getUid())
                         .name(result.getName())
                         .url(result.getUrl())

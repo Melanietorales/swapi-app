@@ -3,8 +3,8 @@ package com.swapi.app.mapper;
 import com.swapi.app.dto.VehicleByIdResponseDto;
 import com.swapi.app.dto.VehicleListPropertiesDto;
 import com.swapi.app.dto.VehicleListResultsDto;
-import com.swapi.app.model.VehicleByIdResponse;
-import com.swapi.app.model.VehicleListProperties;
+import com.swapi.app.model.response.VehicleByIdResponse;
+import com.swapi.app.model.response.VehicleListProperties;
 
 public class VehicleByIdResponsetoDto {
 

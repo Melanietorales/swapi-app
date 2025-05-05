@@ -4,6 +4,8 @@ import com.swapi.app.dto.PeopleListResponseDto;
 import com.swapi.app.dto.PersonSummaryDto;
 import com.swapi.app.service.PeopleService;
 import io.swagger.v3.oas.annotations.Operation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/people")
 public class PeopleController {
 
+    private static final Logger logger = LoggerFactory.getLogger(PeopleController.class);
     private final PeopleService peopleService;
 
     public PeopleController(PeopleService peopleService) {
@@ -25,6 +28,7 @@ public class PeopleController {
             @RequestParam(defaultValue = "10") int limit,
             @RequestParam(required = false) String name
     ) {
+        logger.info("PeopleController - getAllPeople - page: {}, limit: {}, name: {}", page, limit, name);
         return ResponseEntity.ok(peopleService.getPeopleData(page, limit, name));
     }
 
@@ -33,6 +37,7 @@ public class PeopleController {
     public ResponseEntity<PersonSummaryDto> getPersonById(
             @PathVariable int id
     ) {
+        logger.info("PeopleController - getPersonById - id: {}", id);
         return ResponseEntity.ok(peopleService.getPersonById(id));
     }
 }

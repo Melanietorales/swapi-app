@@ -5,8 +5,8 @@ import com.swapi.app.dto.SwapiFilmByIdResponseDto;
 import com.swapi.app.dto.SwapiFilmResponseDto;
 import com.swapi.app.mapper.SwapiFilmByIdResponseToDto;
 import com.swapi.app.mapper.SwapiFilmListResponseToDto;
-import com.swapi.app.model.SwapiFilmByIdResponse;
-import com.swapi.app.model.SwapiFilmListResponse;
+import com.swapi.app.model.response.FilmByIdResponse;
+import com.swapi.app.model.response.FilmListResponse;
 import com.swapi.app.service.FilmService;
 import org.springframework.stereotype.Service;
 
@@ -19,12 +19,12 @@ public class FilmServiceImpl implements FilmService {
     }
 
     public SwapiFilmResponseDto getFilmsData(int page, int limit, String title) {
-        SwapiFilmListResponse response = filmClient.getFilmsData(page, limit, title);
+        FilmListResponse response = filmClient.getFilmsData(page, limit, title);
         return SwapiFilmListResponseToDto.toDto(response);
     }
 
     public SwapiFilmByIdResponseDto getFilmDataById(int id) {
-        SwapiFilmByIdResponse response = filmClient.getFilmDataById(id);
+        FilmByIdResponse response = filmClient.getFilmDataById(id);
         return SwapiFilmByIdResponseToDto.toDto(response);
     }
 }

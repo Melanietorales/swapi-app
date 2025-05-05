@@ -1,14 +1,17 @@
 package com.swapi.app.client.impl;
 
 import com.swapi.app.client.StarshipClient;
+import com.swapi.app.exception.GenericException;
+import com.swapi.app.exception.SwapiNotFoundException;
 import com.swapi.app.mapper.SwapiMapper;
-import com.swapi.app.model.StarshipListResponse;
-import com.swapi.app.model.SwapiStarshipByIdResponse;
+import com.swapi.app.model.response.StarshipListResponse;
+import com.swapi.app.model.response.StarshipByIdResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -45,26 +48,46 @@ public class StarshipClientImpl implements StarshipClient {
 
         String url = uriBuilder.toUriString();
 
-        String rawResponse = restTemplate.exchange(
-                url,
-                HttpMethod.GET,
-                null,
-                String.class
-        ).getBody();
+        try {
+            String rawResponse = restTemplate.exchange(
+                    url,
+                    HttpMethod.GET,
+                    null,
+                    String.class
+            ).getBody();
 
-        return swapiMapper.mapStarshipResponse(rawResponse, isSearch);
+            StarshipListResponse response = swapiMapper.mapStarshipResponse(rawResponse, isSearch);
+            if (isSearch && (response.getResults() == null || response.getResults().isEmpty())) {
+                logger.error("No starship found with the given filters.");
+                throw new SwapiNotFoundException("No starship found with the given filters.");
+            }
+            return response;
+
+        } catch (Exception e) {
+            logger.error("Error occurred while fetching starship: {}", e.getMessage());
+            throw new GenericException("An error occurred while fetching starship");
+        }
     }
 
-    public SwapiStarshipByIdResponse getStarshipById(int id) {
+    public StarshipByIdResponse getStarshipById(int id) {
         logger.info("getStashipById - Trying to get starship data from swapi with id: {}", id);
         String url = baseUrl + "/starships/" + id;
 
-        return restTemplate.exchange(
-                url,
-                HttpMethod.GET,
-                null,
-                SwapiStarshipByIdResponse.class
-        ).getBody();
+        try {
+            return restTemplate.exchange(
+                    url,
+                    HttpMethod.GET,
+                    null,
+                    StarshipByIdResponse.class
+            ).getBody();
+        } catch (HttpClientErrorException.NotFound e) {
+            logger.error("Starship not found for id {}. Response body: {}", id, e.getResponseBodyAsString());
+            throw new SwapiNotFoundException("Starship not found for id " + id);
+
+        } catch (Exception e) {
+            logger.error("Error occurred while fetching starship by id {}, error: {}", id, e.getMessage());
+            throw new GenericException("An error occurred while fetching starship by id: " + id);
+        }
     }
 
 }

@@ -5,8 +5,8 @@ import com.swapi.app.dto.StarshipListResponseDto;
 import com.swapi.app.dto.SwapiStarshipByIdResponseDto;
 import com.swapi.app.mapper.StarshipListResponseToDto;
 import com.swapi.app.mapper.SwapiStarshipByIdResponseToDto;
-import com.swapi.app.model.StarshipListResponse;
-import com.swapi.app.model.SwapiStarshipByIdResponse;
+import com.swapi.app.model.response.StarshipListResponse;
+import com.swapi.app.model.response.StarshipByIdResponse;
 import com.swapi.app.service.StarshipService;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +27,7 @@ public class StarshipServiceImpl implements StarshipService{
 
     @Override
     public SwapiStarshipByIdResponseDto getStarshipById(int id) {
-        SwapiStarshipByIdResponse response = starshipClient.getStarshipById(id);
+        StarshipByIdResponse response = starshipClient.getStarshipById(id);
         return SwapiStarshipByIdResponseToDto.toDto(response);
     }
 

@@ -1,9 +1,9 @@
 package com.swapi.app.client;
 
-import com.swapi.app.model.SwapiFilmByIdResponse;
-import com.swapi.app.model.SwapiFilmListResponse;
+import com.swapi.app.model.response.FilmByIdResponse;
+import com.swapi.app.model.response.FilmListResponse;
 
 public interface FilmClient {
-    SwapiFilmListResponse getFilmsData(int page, int limit, String title);
-    SwapiFilmByIdResponse getFilmDataById(int id);
+    FilmListResponse getFilmsData(int page, int limit, String title);
+    FilmByIdResponse getFilmDataById(int id);
 }

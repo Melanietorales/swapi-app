@@ -1,7 +1,7 @@
 package com.swapi.app.client;
 
-import com.swapi.app.model.VehicleByIdResponse;
-import com.swapi.app.model.VehicleListResponse;
+import com.swapi.app.model.response.VehicleByIdResponse;
+import com.swapi.app.model.response.VehicleListResponse;
 
 public interface VehicleClient {
 

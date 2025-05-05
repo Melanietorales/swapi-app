@@ -1,8 +1,8 @@
 package com.swapi.app.mapper;
 
 import com.swapi.app.dto.PeopleListResponseDto;
-import com.swapi.app.model.PeopleListResponse;
-import com.swapi.app.model.PersonSummary;
+import com.swapi.app.model.response.PeopleListResponse;
+import com.swapi.app.model.response.PersonSummary;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;

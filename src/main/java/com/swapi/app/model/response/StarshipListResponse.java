@@ -1,4 +1,4 @@
-package com.swapi.app.model;
+package com.swapi.app.model.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -17,6 +17,6 @@ public class StarshipListResponse {
     private Integer totalPages;
     private String previous;
     private String next;
-    List<SwapiStarshipProperties> results;
+    List<StarshipProperties> results;
 
 }

@@ -3,14 +3,14 @@ package com.swapi.app.mapper;
 import com.swapi.app.dto.FilmPropertiesDto;
 import com.swapi.app.dto.SwapiFilmListResultsDto;
 import com.swapi.app.dto.SwapiFilmResponseDto;
-import com.swapi.app.model.SwapiFilmListResponse;
+import com.swapi.app.model.response.FilmListResponse;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class SwapiFilmListResponseToDto {
 
-    public static SwapiFilmResponseDto toDto(SwapiFilmListResponse response) {
+    public static SwapiFilmResponseDto toDto(FilmListResponse response) {
         List<SwapiFilmListResultsDto> resultDtos = response.getResult().stream()
                 .map(result -> {
                     FilmPropertiesDto properties = new FilmPropertiesDto();

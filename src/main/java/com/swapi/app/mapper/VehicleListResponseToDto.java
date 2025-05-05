@@ -2,8 +2,8 @@ package com.swapi.app.mapper;
 
 import com.swapi.app.dto.VehicleListPropertiesDto;
 import com.swapi.app.dto.VehicleListResponseDto;
-import com.swapi.app.model.VehicleListProperties;
-import com.swapi.app.model.VehicleListResponse;
+import com.swapi.app.model.response.VehicleListProperties;
+import com.swapi.app.model.response.VehicleListResponse;
 
 import java.util.List;
 import java.util.stream.Collectors;
