@@ -1,13 +1,16 @@
-package com.swapi.app.service;
+package com.swapi.app.service.impl;
 
-import com.swapi.app.DTO.PeopleListResponseDto;
-import com.swapi.app.DTO.PersonSummaryDto;
+import com.swapi.app.dto.PeopleListResponseDto;
+import com.swapi.app.dto.PersonSummaryDto;
 import com.swapi.app.client.PeopleClient;
 import com.swapi.app.mapper.PeopleListResponseToDto;
 import com.swapi.app.mapper.SwapiIdSearchResponseToDto;
 import com.swapi.app.model.PeopleListResponse;
 import com.swapi.app.model.SwapiIdSearchResponse;
+import com.swapi.app.service.PeopleService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PeopleServiceImpl implements PeopleService {
 
     private final PeopleClient peopleClient;

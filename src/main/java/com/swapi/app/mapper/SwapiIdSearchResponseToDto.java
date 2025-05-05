@@ -1,6 +1,6 @@
 package com.swapi.app.mapper;
 
-import com.swapi.app.DTO.PersonSummaryDto;
+import com.swapi.app.dto.PersonSummaryDto;
 import com.swapi.app.model.PersonSummary;
 import com.swapi.app.model.SwapiIdSearchResponse;
 

@@ -1,7 +1,7 @@
 package com.swapi.app.controller;
 
-import com.swapi.app.DTO.PeopleListResponseDto;
-import com.swapi.app.DTO.PersonSummaryDto;
+import com.swapi.app.dto.PeopleListResponseDto;
+import com.swapi.app.dto.PersonSummaryDto;
 import com.swapi.app.service.PeopleService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

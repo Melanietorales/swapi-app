@@ -2,7 +2,7 @@ package com.swapi.app.config;
 
 import com.swapi.app.client.PeopleClient;
 import com.swapi.app.service.PeopleService;
-import com.swapi.app.service.PeopleServiceImpl;
+import com.swapi.app.service.impl.PeopleServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

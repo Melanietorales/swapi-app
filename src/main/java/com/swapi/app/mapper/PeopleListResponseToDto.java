@@ -1,7 +1,7 @@
 package com.swapi.app.mapper;
 
-import com.swapi.app.DTO.PeopleListResponseDto;
-import com.swapi.app.DTO.PersonSummaryDto;
+import com.swapi.app.dto.PeopleListResponseDto;
+import com.swapi.app.dto.PersonSummaryDto;
 import com.swapi.app.model.PeopleListResponse;
 import com.swapi.app.model.PersonSummary;
 

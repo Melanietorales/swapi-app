@@ -1,7 +1,7 @@
 package com.swapi.app.service;
 
-import com.swapi.app.DTO.PeopleListResponseDto;
-import com.swapi.app.DTO.PersonSummaryDto;
+import com.swapi.app.dto.PeopleListResponseDto;
+import com.swapi.app.dto.PersonSummaryDto;
 
 public interface PeopleService {
     PeopleListResponseDto getPeopleData(int page, int limit, String name);

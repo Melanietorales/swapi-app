@@ -28,15 +28,6 @@ public class PeopleClientImpl implements PeopleClient {
         this.swapiMapper = swapiMapper;
     }
 
-    /**
-     * Obtiene los datos de las personas, incluyendo filtrado por nombre y paginación.
-     *
-     * @param page  Página de resultados a recuperar.
-     * @param limit Número máximo de resultados por página.
-     * @param name  Filtro opcional por nombre de la persona.
-     * @return Una lista de personas con los datos completos.
-     */
-
     @Override
     public PeopleListResponse getPeopleData(int page, int limit, String name) {
         logger.info("getPeopleData - Trying to get people data from swapi");
@@ -61,13 +52,6 @@ public class PeopleClientImpl implements PeopleClient {
 
         return swapiMapper.mapResponse(rawResponse, isSearch, page);
     }
-
-    /**
-     * Obtiene los datos de las personas, incluyendo filtrado por nombre y paginación.
-     *
-     * @param id Filtro por id para la persona a recuperar
-     * @return Datos de la persona
-     */
 
     @Override
     public SwapiIdSearchResponse getPersonById(int id) {
