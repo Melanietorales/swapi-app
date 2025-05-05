@@ -150,5 +150,70 @@ public class SwapiMapper {
                     results
             );
         }
+
+        public VehicleListResponse mapVehiclesResponse(String json, boolean isSearch) {
+            try {
+                if (isSearch) {
+                    return mapVehiclesSearchResponse(json);
+                } else {
+                    return mapVehiclesPagedResponse(json);
+                }
+            } catch (Exception e) {
+                throw new RuntimeException("Failed to map Starship response from SWAPI", e);
+            }
+        }
+
+    private VehicleListResponse mapVehiclesSearchResponse (String json) throws IOException {
+        VehicleSearchResult searchResponse = mapper.readValue(json, VehicleSearchResult.class);
+        List<VehicleListProperties> results = new ArrayList<>();
+
+        for (VehicleListResults result : searchResponse.getResult()) {
+            VehicleListProperties props = result.getProperties();
+
+            VehicleListProperties summary = VehicleListProperties.builder()
+                    .uid(props.getUid())
+                    .name(props.getName())
+                    .model(props.getModel())
+                    .created(props.getCreated())
+                    .edited(props.getEdited())
+                    .consumables(props.getConsumables())
+                    .cargoCapacity(props.getCargoCapacity())
+                    .passengers(props.getPassengers())
+                    .maxAtmospheringSpeed(props.getMaxAtmospheringSpeed())
+                    .crew(props.getCrew())
+                    .length(props.getLength())
+                    .costInCredits(props.getCostInCredits())
+                    .manufacturer(props.getManufacturer())
+                    .vehicleClass(props.getVehicleClass())
+                    .pilots(props.getPilots())
+                    .films(props.getFilms())
+                    .url(props.getUrl())
+                    .build();
+
+            results.add(summary);
+        }
+        return new VehicleListResponse(null, null, null, null, results);
+    }
+
+    private VehicleListResponse mapVehiclesPagedResponse (String json) throws IOException {
+        VehicleListResponse pagedResponse = mapper.readValue(json, VehicleListResponse.class);
+        List<VehicleListProperties> results = new ArrayList<>();
+
+        for (VehicleListProperties result : pagedResponse.getResults()) {
+            results.add(VehicleListProperties.builder()
+                    .uid(result.getUid())
+                    .name(result.getName())
+                    .url(result.getUrl())
+                    .build());
+        }
+
+        return new VehicleListResponse(
+                pagedResponse.getTotalRecords(),
+                pagedResponse.getTotalPages(),
+                pagedResponse.getPrevious(),
+                pagedResponse.getNext(),
+                results
+        );
+    }
 }
 

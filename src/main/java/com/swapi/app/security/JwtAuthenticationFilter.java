@@ -1,50 +1,42 @@
 package com.swapi.app.security;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
 
-import javax.servlet.Filter;
 import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component
-@WebFilter("/*")
-public class JwtAuthenticationFilter implements Filter {
+public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-    }
+    protected void doFilterInternal(HttpServletRequest request,
+                                    HttpServletResponse response,
+                                    FilterChain filterChain)
+            throws ServletException, IOException {
 
-    @Override
-    public void doFilter(javax.servlet.ServletRequest request, javax.servlet.ServletResponse response, FilterChain chain)
-            throws IOException, ServletException {
+        String uri = request.getRequestURI();
 
-        HttpServletRequest httpRequest = (HttpServletRequest) request;
-        HttpServletResponse httpResponse = (HttpServletResponse) response;
-
-        if (httpRequest.getRequestURI().equals("/api/login")) {
-            chain.doFilter(request, response);
+        if (uri.startsWith("/swagger-ui") || uri.startsWith("/v3/api-docs") || uri.startsWith("/swagger-resources")) {
+            filterChain.doFilter(request, response);
             return;
         }
 
-        String token = httpRequest.getHeader("Authorization");
+        if (uri.equals("/swapi/login")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+        String token = request.getHeader("Authorization");
 
         if (token != null && JwtTokenUtil.validateToken(token)) {
-            String username = JwtTokenUtil.getUsernameFromToken(token);
+            filterChain.doFilter(request, response);
         } else {
-            httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            httpResponse.getWriter().write("Unauthorized");
-            return;
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.getWriter().write("Unauthorized");
         }
-
-        chain.doFilter(request, response);
-    }
-
-    @Override
-    public void destroy() {
     }
 }
