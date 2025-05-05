@@ -7,6 +7,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class StarshipSearchResult {
-    private SwapiStarshipProperties properties;
+public class SwapiStarshipByIdResponse {
+    private StarshipSearchResult result;
 }

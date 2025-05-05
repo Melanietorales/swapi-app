@@ -91,12 +91,12 @@ public class SwapiMapper {
 
         private StarshipListResponse mapStarshipSearchResponse (String json,int page) throws IOException {
             SwapiStarshipSearchResponse searchResponse = mapper.readValue(json, SwapiStarshipSearchResponse.class);
-            List<SwapiStarshipResults> results = new ArrayList<>();
+            List<SwapiStarshipProperties> results = new ArrayList<>();
 
             for (StarshipSearchResult result : searchResponse.getResult()) {
-                SwapiStarshipResults props = result.getProperties();
+                SwapiStarshipProperties props = result.getProperties();
 
-                SwapiStarshipResults summary = SwapiStarshipResults.builder()
+                SwapiStarshipProperties summary = SwapiStarshipProperties.builder()
                         .uid(props.getUid())
                         .name(props.getName())
                         .model(props.getModel())
@@ -112,7 +112,7 @@ public class SwapiMapper {
                         .costInCredits(props.getCostInCredits())
                         .manufacturer(props.getManufacturer())
                         .pilots(props.getPilots())
-                        .MGLT(props.getMGLT())
+                        .mglt(props.getMglt())
                         .starshipClass(props.getStarshipClass())
                         .hyperdriveRating(props.getHyperdriveRating())
                         .films(props.getFilms())
@@ -127,16 +127,15 @@ public class SwapiMapper {
 
         private StarshipListResponse mapStarshipPagedResponse (String json,int page) throws IOException {
             StarshipListResponse pagedResponse = mapper.readValue(json, StarshipListResponse.class);
-            List<SwapiStarshipResults> results = new ArrayList<>();
+            List<SwapiStarshipProperties> results = new ArrayList<>();
 
-            for (SwapiStarshipResults result : pagedResponse.getResults()) {
-                results.add(SwapiStarshipResults.builder()
+            for (SwapiStarshipProperties result : pagedResponse.getResults()) {
+                results.add(SwapiStarshipProperties.builder()
                         .uid(result.getUid())
                         .name(result.getName())
                         .url(result.getUrl())
                         .build());
             }
-
             return new StarshipListResponse(
                     pagedResponse.getTotalRecords(),
                     pagedResponse.getTotalPages(),

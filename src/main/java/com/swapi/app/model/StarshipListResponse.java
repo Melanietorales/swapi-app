@@ -17,6 +17,6 @@ public class StarshipListResponse {
     private Integer totalPages;
     private String previous;
     private String next;
-    List<SwapiStarshipResults> results;
+    List<SwapiStarshipProperties> results;
 
 }

@@ -3,6 +3,7 @@ package com.swapi.app.client.impl;
 import com.swapi.app.client.StarshipClient;
 import com.swapi.app.mapper.SwapiMapper;
 import com.swapi.app.model.StarshipListResponse;
+import com.swapi.app.model.SwapiStarshipByIdResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -52,6 +53,18 @@ public class StarshipClientImpl implements StarshipClient {
         ).getBody();
 
         return swapiMapper.mapStarshipResponse(rawResponse, isSearch, page);
+    }
+
+    public SwapiStarshipByIdResponse getStarshipById(int id) {
+        logger.info("getStashipById - Trying to get starship data from swapi with id: {}", id);
+        String url = baseUrl + "/starships/" + id;
+
+        return restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                null,
+                SwapiStarshipByIdResponse.class
+        ).getBody();
     }
 
 }

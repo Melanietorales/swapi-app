@@ -1,12 +1,10 @@
 package com.swapi.app.controller;
 
 import com.swapi.app.dto.StarshipListResponseDto;
+import com.swapi.app.dto.SwapiStarshipByIdResponseDto;
 import com.swapi.app.service.StarshipService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/starship")
@@ -26,5 +24,12 @@ public class StarshipController {
             @RequestParam(required = false) String model
     ) {
         return ResponseEntity.ok(starshipService.getStarshipData(page, limit, name, model));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<SwapiStarshipByIdResponseDto> getStarshipById(
+            @PathVariable int id
+    ) {
+        return ResponseEntity.ok(starshipService.getStarshipById(id));
     }
 }

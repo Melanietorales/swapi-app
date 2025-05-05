@@ -1,14 +1,18 @@
 package com.swapi.app.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Builder
 @Data
-public class SwapiStarshipResults {
+@AllArgsConstructor
+@NoArgsConstructor
+public class SwapiStarshipProperties {
     private String uid;
     private String name;
     private String url;
@@ -27,7 +31,8 @@ public class SwapiStarshipResults {
     private String costInCredits;
     private String manufacturer;
     private List<String> pilots;
-    private String MGLT;
+    @JsonProperty(value = "MGLT")
+    private String mglt;
     @JsonProperty(value = "starship_class")
     private String starshipClass;
     @JsonProperty(value = "hyperdrive_rating")

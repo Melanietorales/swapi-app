@@ -1,9 +1,9 @@
 package com.swapi.app.mapper;
 
 import com.swapi.app.dto.StarshipListResponseDto;
-import com.swapi.app.dto.SwapiStarshipResultsDto;
+import com.swapi.app.dto.SwapiStarshipPropertiesDto;
 import com.swapi.app.model.StarshipListResponse;
-import com.swapi.app.model.SwapiStarshipResults;
+import com.swapi.app.model.SwapiStarshipProperties;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class StarshipListResponseToDto {
 
     public static StarshipListResponseDto toDto(StarshipListResponse response) {
-        List<SwapiStarshipResultsDto> dtoList = response.getResults().stream()
+        List<SwapiStarshipPropertiesDto> dtoList = response.getResults().stream()
                 .map(StarshipListResponseToDto::mapStarshipResultsToDto)
                 .collect(Collectors.toList());
 
@@ -24,27 +24,27 @@ public class StarshipListResponseToDto {
                 .build();
     }
 
-    private static SwapiStarshipResultsDto mapStarshipResultsToDto(SwapiStarshipResults swapiStarshipResults) {
-        return SwapiStarshipResultsDto.builder()
-                .uid(swapiStarshipResults.getUid())
-                .name(swapiStarshipResults.getName())
-                .url(swapiStarshipResults.getUrl())
-                .created(swapiStarshipResults.getCreated())
-                .edited(swapiStarshipResults.getEdited())
-                .consumables(swapiStarshipResults.getConsumables())
-                .cargoCapacity(swapiStarshipResults.getCargoCapacity())
-                .passengers(swapiStarshipResults.getPassengers())
-                .maxAtmospheringSpeed(swapiStarshipResults.getMaxAtmospheringSpeed())
-                .crew(swapiStarshipResults.getCrew())
-                .length(swapiStarshipResults.getLength())
-                .model(swapiStarshipResults.getModel())
-                .costInCredits(swapiStarshipResults.getCostInCredits())
-                .manufacturer(swapiStarshipResults.getManufacturer())
-                .pilots(swapiStarshipResults.getPilots())
-                .MGLT(swapiStarshipResults.getMGLT())
-                .starshipClass(swapiStarshipResults.getStarshipClass())
-                .hyperdriveRating(swapiStarshipResults.getHyperdriveRating())
-                .films(swapiStarshipResults.getFilms())
+    private static SwapiStarshipPropertiesDto mapStarshipResultsToDto(SwapiStarshipProperties swapiStarshipProperties) {
+        return SwapiStarshipPropertiesDto.builder()
+                .uid(swapiStarshipProperties.getUid())
+                .name(swapiStarshipProperties.getName())
+                .url(swapiStarshipProperties.getUrl())
+                .created(swapiStarshipProperties.getCreated())
+                .edited(swapiStarshipProperties.getEdited())
+                .consumables(swapiStarshipProperties.getConsumables())
+                .cargoCapacity(swapiStarshipProperties.getCargoCapacity())
+                .passengers(swapiStarshipProperties.getPassengers())
+                .maxAtmospheringSpeed(swapiStarshipProperties.getMaxAtmospheringSpeed())
+                .crew(swapiStarshipProperties.getCrew())
+                .length(swapiStarshipProperties.getLength())
+                .model(swapiStarshipProperties.getModel())
+                .costInCredits(swapiStarshipProperties.getCostInCredits())
+                .manufacturer(swapiStarshipProperties.getManufacturer())
+                .pilots(swapiStarshipProperties.getPilots())
+                .MGLT(swapiStarshipProperties.getMglt())
+                .starshipClass(swapiStarshipProperties.getStarshipClass())
+                .hyperdriveRating(swapiStarshipProperties.getHyperdriveRating())
+                .films(swapiStarshipProperties.getFilms())
                 .build();
     }
 }
