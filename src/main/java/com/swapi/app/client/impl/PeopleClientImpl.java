@@ -50,7 +50,7 @@ public class PeopleClientImpl implements PeopleClient {
                 String.class
         ).getBody();
 
-        return swapiMapper.mapResponse(rawResponse, isSearch, page);
+        return swapiMapper.mapPeopleResponse(rawResponse, isSearch, page);
     }
 
     @Override

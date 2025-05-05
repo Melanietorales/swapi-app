@@ -52,7 +52,7 @@ public class StarshipClientImpl implements StarshipClient {
                 String.class
         ).getBody();
 
-        return swapiMapper.mapStarshipResponse(rawResponse, isSearch, page);
+        return swapiMapper.mapStarshipResponse(rawResponse, isSearch);
     }
 
     public SwapiStarshipByIdResponse getStarshipById(int id) {

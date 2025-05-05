@@ -17,19 +17,21 @@ public class SwapiMapper {
         this.mapper = mapper;
     }
 
-    public PeopleListResponse mapResponse(String json, boolean isSearch, int page) {
+    // Maps the raw response based on search or paged results.
+    public PeopleListResponse mapPeopleResponse (String json, boolean isSearch, int page) {
         try {
             if (isSearch) {
-                return mapSearchResponse(json, page);
+                return mapPeopleSearchResponse(json, page);
             } else {
-                return mapPagedResponse(json, page);
+                return mapPeoplePagedResponse (json, page);
             }
         } catch (Exception e) {
             throw new RuntimeException("Failed to map swapi response", e);
         }
     }
 
-    private PeopleListResponse mapSearchResponse(String json, int page) throws IOException {
+    // Maps a search-based response for people data.
+    private PeopleListResponse mapPeopleSearchResponse(String json, int page) throws IOException {
         SwapiNameSearchResponse singleResponse = mapper.readValue(json, SwapiNameSearchResponse.class);
         List<PersonSummary> results = new ArrayList<>();
 
@@ -57,7 +59,8 @@ public class SwapiMapper {
         return new PeopleListResponse(results.size(), 1, page, results);
     }
 
-    private PeopleListResponse mapPagedResponse(String json, int page) throws IOException {
+    // Maps a paginated response for people data.
+    private PeopleListResponse mapPeoplePagedResponse (String json, int page) throws IOException {
         SwapiPeopleResponse pagedResponse = mapper.readValue(json, SwapiPeopleResponse.class);
         List<PersonSummary> results = new ArrayList<>();
 
@@ -77,19 +80,21 @@ public class SwapiMapper {
         );
     }
 
-    public StarshipListResponse mapStarshipResponse(String json, boolean isSearch, int page) {
+    // Maps a raw Starship response based on search or paged results.
+    public StarshipListResponse mapStarshipResponse(String json, boolean isSearch) {
         try {
             if (isSearch) {
-                return mapStarshipSearchResponse(json, page);
+                return mapStarshipSearchResponse(json);
             } else {
-                return mapStarshipPagedResponse(json, page);
+                return mapStarshipPagedResponse(json);
             }
         } catch (Exception e) {
             throw new RuntimeException("Failed to map Starship response from SWAPI", e);
         }
     }
 
-        private StarshipListResponse mapStarshipSearchResponse (String json,int page) throws IOException {
+    // Maps a search-based response for starships.
+    private StarshipListResponse mapStarshipSearchResponse (String json) throws IOException {
             SwapiStarshipSearchResponse searchResponse = mapper.readValue(json, SwapiStarshipSearchResponse.class);
             List<SwapiStarshipProperties> results = new ArrayList<>();
 
@@ -125,7 +130,8 @@ public class SwapiMapper {
             return new StarshipListResponse(null, null, null, null, results);
         }
 
-        private StarshipListResponse mapStarshipPagedResponse (String json,int page) throws IOException {
+    // Maps a paginated response for starships.
+    private StarshipListResponse mapStarshipPagedResponse (String json) throws IOException {
             StarshipListResponse pagedResponse = mapper.readValue(json, StarshipListResponse.class);
             List<SwapiStarshipProperties> results = new ArrayList<>();
 
